@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Pizza_Maker.Domain.Models.Player>
+@{
+    ViewBag.Title = "StartGame";
+    Layout = null;
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+}
+
+<h2 class="text-center">Start Game</h2>
+<div class="col">
+    @using (Html.BeginForm("StartGame", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+
+    <div class="row">
+
+        @if (Model.Count() >= 0)
+        {
+
+            <button type="submit" name="PlayerID" value="0">Create New Game</button>
+
+        }
+        @if (Model.Count() > 0)
+        {
+
+            @Html.DropDownListFor(m => m.First().PlayerID,
+                              Model.Select(i => new SelectListItem { Value = i.PlayerID.ToString(), Text = "Pizza Amount: " + i.PizzaAmount.ToString() + "     Date Created: " + i.DateCreated.ToShortDateString() }),
+                              new { @class = "form-control" })
+            <div class="form-group col text-center">
+                <input type="submit" value="Load Game" />
+            </div>
+        }
+
+
+
+    </div>
+    }
+
+</div>
+
