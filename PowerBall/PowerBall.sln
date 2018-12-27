@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerBall", "PowerBall\PowerBall.csproj", "{AC704C41-036D-4EA4-B648-BAA01ED90BC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerBall.Tests", "PowerBall.Tests\PowerBall.Tests.csproj", "{7BAA29F0-74DD-43E6-AF6B-34CED17681E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC704C41-036D-4EA4-B648-BAA01ED90BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC704C41-036D-4EA4-B648-BAA01ED90BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC704C41-036D-4EA4-B648-BAA01ED90BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC704C41-036D-4EA4-B648-BAA01ED90BC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BAA29F0-74DD-43E6-AF6B-34CED17681E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BAA29F0-74DD-43E6-AF6B-34CED17681E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BAA29F0-74DD-43E6-AF6B-34CED17681E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BAA29F0-74DD-43E6-AF6B-34CED17681E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E931D212-AC71-49DE-9E76-E63D9CEC728D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,37 @@
+﻿@{
+    @model List<FieldAgent.Models.Agent>
+}
+
+    <div class="row">
+        <div class="col">
+            <h3>Home</h3>
+        </div>
+        <div class="col right">
+            <a href="/Home/AddAgent/" class="btn btn-info">Add Agent</a>
+        </div>
+    </div>
+
+<div class="container">
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Field Agent</th>
+                <th scope="col">Agency</th>
+            </tr>
+        </thead>
+        @foreach (var agent in Model)
+        {
+            <tr class="row">
+                <td class="col">
+                    @Html.ActionLink(@agent.FirstName, "EditAgent", new { id = agent.UserID })
+                </td>
+                <td class="col">@agent.Agency</td>
+                <td class="row">
+                    <a href="/Home/Delete/@agent.UserID" class="btn btn-danger">Delete</a>
+                    @Html.ActionLink("Add Assignment", "AddAssignment", new { id = agent.UserID }, new { @class = "btn btn-secondary" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

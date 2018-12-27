@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+    int i = 0;
+
+}
+
+<h2>Going to increment the below value by 2+ every 5 seconds or so with javascript.</h2>
+
+<div id="AmountSecond">Amount Per Second: 0</div>
+<div class="row">
+
+    <div id="ChangeValue" class="col">0</div>
+
+
+    <div id="showButton" class="btn btn-outline-dark col align-content-end" onclick="BuildingPurchase();">Price of Oven: 10</div>
+</div>
+@{
+    @Scripts.Render("~/Scripts/javascript.js")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+}

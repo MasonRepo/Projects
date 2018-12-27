@@ -1,0 +1,41 @@
+﻿@model DealOrNoDealTwo.MVC.Models.IndexVM
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2> You are currently on Round @Model.GameState.RoundNumber</h2>
+<h2> You may pick @Model.GameState.AmountChosen more briefcases.</h2>
+
+@{
+    if(Model.LastClicked != null)
+    {
+        <h1>You opened a briefcase containing @Model.LastClicked</h1>
+    }
+}
+@using (Html.BeginForm( FormMethod.Post))
+{
+    <div class="form-row">
+        <div class="form-group">
+            <div class="col">
+
+                @foreach (var b in Model.Briefcases)
+                {
+                    <button type="submit" class="btn btn-outline-secondary" value="@b.BriefCaseId" name="id" id="@b.BriefCaseId">@b.BriefCaseId</button>
+                }
+            </div>
+            <div class="col">
+                @if (Model.GameState.AmountChosen == 0)
+                {
+                <div class="row">
+                    <p>This is the Banker's offer, do you accept?  @Model.Round.BankerPercentage</p>
+                </div>
+
+                <div class="row">
+                    <button type="submit"></button>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+}

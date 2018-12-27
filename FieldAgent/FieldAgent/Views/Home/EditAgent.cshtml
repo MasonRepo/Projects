@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "EditAgent";
+    @model FieldAgent.ViewModel.AssignVM
+
+}
+
+<h2>Field Agent</h2>
+@*<h2>@Model.Agent.FirstName @Model.Agent.LastName</h2>*@
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    <div class="form-row">
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.FirstName)
+            @Html.ValidationMessageFor(m => m.Agent.FirstName)
+            @Html.TextBoxFor(a => a.Agent.FirstName, new { @class = "form-control" })
+
+
+        </div>
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.MiddleName)
+            @Html.TextBoxFor(m => m.Agent.MiddleName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Agent.MiddleName)
+        </div>
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.LastName)
+            @Html.TextBoxFor(m => m.Agent.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Agent.LastName)
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.BirthDate)
+            @Html.TextBoxFor(m => m.Agent.BirthDate, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.Agent.BirthDate)
+        </div>
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.HeightIN)
+            @Html.TextBoxFor(m => m.Agent.HeightIN, new { @class = "form-control", type = "number" })
+            @Html.ValidationMessageFor(m => m.Agent.HeightIN)
+        </div>
+    </div>
+    <h2>Agency</h2>
+    <div class="form-row">
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.UserID)
+            @Html.TextBoxFor(m => m.Agent.UserID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Agent.UserID)
+        </div>
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.Agency)
+            @Html.DropDownListFor(m => m.Agent.Agency,
+                 Model.Agency.Select(i => new SelectListItem { Value = i.Agency.ToString(), Text = i.Agency }),
+                 new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Agent.Agency)
+        </div>
+        <div class="form-group col">
+            @Html.LabelFor(m => m.SecurityClearances)
+            @Html.DropDownListFor(m => m.Agent.SecurityClearance,
+                 Model.SecurityClearances.Select(i => new SelectListItem { Value = i.Clearance.ToString(), Text = i.Clearance }),
+                 new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Agent.Agency)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.ActivationDate)
+            @Html.TextBoxFor(m => m.Agent.ActivationDate, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.Agent.ActivationDate)
+        </div>
+        <div class="form-group col align-self-end">
+            <div class="form-check">
+                @Html.CheckBoxFor(m => m.Agent.IsActive, new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.Agent.IsActive, new { @class = "form-check-label" })
+            </div>
+        </div>
+    </div>
+    <a href=@Model.Agent.PictureUrl></a>
+    <div class="form-row">
+        <div class="form-group col">
+            @Html.LabelFor(m => m.Agent.PictureUrl)
+            @Html.TextBoxFor(m => m.Agent.PictureUrl, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <h2>Assignments</h2>
+    <div class="container">
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Country</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+
+                </tr>
+            </thead>
+            @foreach (var assingment in Model.Assignments)
+            {
+                <tr class="row">
+                    <td class="col">@assingment.CountryCode</td>
+                    <td class="col">@assingment.StartDate</td>
+                    <td class="col">@assingment.EndDate</td>
+
+                    <td class="row">
+                        <a href="/Home/Delete/@assingment.Id" class="btn btn-danger" onclick="return confirm('are you sure?');">Delete</a>
+                        @Html.ActionLink("Edit", "Edit", new { id = assingment.Id }, new { @class = "btn btn-info" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="form-row col-lg-12">
+        <button class="btn btn-primary" type="submit">Edit Agent</button>
+    </div>
+}

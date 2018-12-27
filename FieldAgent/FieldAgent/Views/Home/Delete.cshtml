@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    @model FieldAgent.ViewModel.AssignVM
+
+}
+
+<div class="container">
+
+    <h2>Delete @Model.Agent.FirstName @Model.Agent.LastName?</h2>
+
+
+    <p>Assignments:</p>
+    <p>Deletions are permanet.</p>
+    <p>Both @Model.Agent.FirstName and their assignments @*#*@ will be deleted forever.</p>
+    @Html.ActionLink("Deletes", "Deletes", new { id = Model.Agent.UserID }, new { @class = "btn btn-info" })
+    @Html.ActionLink("Redirect", "Redirect", new { @*id = agent.UserID*@}, new { @class = "btn btn-info" })
+
+</div>

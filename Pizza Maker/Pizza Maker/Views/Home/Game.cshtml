@@ -1,0 +1,115 @@
+﻿@model Pizza_Maker.Domain.ViewModels.EverythingVM
+@{
+    ViewBag.Title = "Game";
+    Layout = null;
+    @Styles.Render("~/Content/css")
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+}
+<h2 class="text-center">Pizza Maker!</h2>
+<br />
+<div class="separatorBottom"></div>
+
+<div class="row">
+    <div class="col text-center pizzaboard">
+
+        <div id="TOTALPIZZAS" data-total="@Model.Player.PizzaAmount">
+            Total Pizzas
+        </div>
+        <div id="PPS" data-pps="@Model.PPS" data-Modifier="@Model.Modifier">
+            Current Pizzas Per Second: @Model.PPS
+        </div>
+        <br />
+        <div>
+            <button id="bigPizza" class="btn bg-transparent" src="~/Content/Images/pizza.png"><img src="~/Content/Images/pizza.png"></button>
+        </div>
+
+        <div class="row">
+
+            @foreach (var u in Model.AllUpgrades)
+            {
+                var buttonID = "Upgrade" + u.UpgradeID + ".png";
+                var percent = u.PercentIncrease + "%";
+                if (u.IsPurchased == false)
+                {
+                    <button id="@u.UpgradeID" class="btn-upgrade" data-id="@u.UpgradeID" data-player="@Model.Player.PlayerID"
+                            data-purchased="@u.IsPurchased" data-price="@u.Price">
+
+                        <span id="UpgradeName">@u.UpgradesName </span>
+                        <br />
+                        <span id="Percent">Percent Increase @percent</span>
+                        <br />
+                        <span id="UpgradePrice">@u.Price Pizzas</span>
+
+                        <div class="icon" style="background-position: 0px 0px;">
+                            <img src="~/Content/Images/@buttonID" height="55" width="100">
+                        </div>
+                    </button>
+                }
+                else
+                {
+                    <button id="@u.UpgradeID" class="btn-upgrade" data-id="@u.UpgradeID" data-player="@Model.Player.PlayerID"
+                            data-purchased="@u.IsPurchased" data-price="@u.Price" disabled>
+
+                        <span id="UpgradeName">@u.UpgradesName @percent</span>
+                        <br />
+                        <span id="Percent">Percent Increase @percent</span>
+                        <br />
+                        <span id="UpgradePrice">@u.Price Pizzas</span>
+                        <div class="icon" style="background-position: 0px 0px;">
+                            <img src="~/Content/Images/@buttonID" height="55" width="100">
+                        </div>
+                    </button>
+                }
+            }
+        </div>
+
+
+
+    </div>
+    <div class="separatorLeft"></div>
+
+    <div class="col">
+        @foreach (var b in Model.TotalBuildings)
+        {
+            var ImageID = b.BuildingID + ".png";
+            // please don't look at how ugly this part is :(
+
+            <div class="row">
+                <button id="buildings" class="btn-test" data-player="@Model.Player.PlayerID" data-id="@b.BuildingID" data-amount="@b.AmountPlayerHas" data-name="@b.BuildingName" data-price="@b.Price" data-increase="@b.PizzaIncrease"
+                        value="@b.BuildingID @b.AmountPlayerHas @b.BuildingName @b.Price @b.PizzaIncrease">
+
+                    <div class="icon" id="buttonIcon" style="background-position: 0px 0px;">
+                        <img src="~/Content/Images/@ImageID" height="100" width="200">
+                    </div>
+                    <div class="content">
+                        You have
+                        <span id="playerAmount"> @b.AmountPlayerHas</span>
+                        <span id="buildName"> of @b.BuildingName </span>
+
+                        <br />
+
+                        Oven Price:
+                        <span id="pizzaPrice">@b.Price</span>
+                        <br />
+                        <span id="PizzaIncrease">
+                            PPS Increase: @b.PizzaIncrease
+                        </span>
+                    </div>
+                </button>
+                <br />
+
+            </div>
+        }
+    </div>
+</div>
+
+@{
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/TEST JAVASCRIPT.js")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+}

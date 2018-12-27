@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Add Assignment";
+    @model FieldAgent.ViewModel.AssignVM
+}
+
+<h2>Add Assignment</h2>
+
+@using (Html.BeginForm())
+{<div class="container">
+        <div class="form-row">
+            <div class="form-group col">
+
+                @*Going to have to make a list I think to display the values*@
+                @Html.LabelFor(m => m.Agent.FirstName)
+                @Html.DropDownListFor(m => m.Assin.Id,
+                 Model.Agents.Select(i => new SelectListItem { Value = i.UserID.ToString() , Text = i.FirstName.ToString() }),
+                 new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Agent.Agency)
+            </div>
+
+            <div class="form-group col">
+                @Html.LabelFor(m => m.Agent.Agency)
+                @Html.DropDownListFor(m => m.Assin.CountryCode,
+                 Model.Assignments.Select(i => new SelectListItem { Value = i.CountryCode, Text = i.CountryCode.ToString() }),
+                 new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Agent.Agency)
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                @Html.LabelFor(m => m.Assin.StartDate)
+                @Html.TextBoxFor(m => m.Assin.StartDate, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Agent.ActivationDate)
+
+            </div>
+            <div class="form-group col">
+                @Html.LabelFor(m => m.Assin.ProjectedEndDate)
+                @Html.TextBoxFor(m => m.Assin.ProjectedEndDate, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Agent.ActivationDate)
+            </div>
+            <div class="form-group col">
+                @Html.LabelFor(m => m.Assin.EndDate)
+                @Html.TextBoxFor(m => m.Assin.EndDate, new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Agent.ActivationDate)
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                @Html.LabelFor(m => m.Assin.Notes)
+                @Html.TextBoxFor(m => m.Assin.Notes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Assin.Notes)
+            </div>
+        </div>
+    </div>
+    <div class="form-row col">
+        <button class="btn btn-primary" type="submit">Add Assignment</button>
+    </div>
+}

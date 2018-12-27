@@ -1,0 +1,6 @@
+namespace FieldAgent.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
